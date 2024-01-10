@@ -1,0 +1,33 @@
+{
+  "name": "ampeco/omnipay-monri",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": { "Ampeco\\OmnipayMonri\\": "src/" }
+  },
+  "authors": [
+    {
+      "name": "Bozhidar Guyurov",
+      "email": "bozhidar.gyurov@ampeco.global"
+    }
+  ],
+  "require": {
+    "omnipay/common": "^3.2",
+    "php": ">=8.1.0",
+    "ext-simplexml": "*"
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    },
+    "platform": {
+      "php": "8.1.26"
+    }
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.41"
+  },
+  "scripts": {
+    "fix": "vendor/bin/php-cs-fixer fix"
+  }
+}
