@@ -38,12 +38,17 @@ class CreateCardResponse extends AbstractResponse implements RedirectResponseInt
 
     private function convertErrorsToString(array $errors): string
     {
+        $errorMessages = [];
         foreach ($errors as $field => $messages) {
+            if (!is_array($messages)) {
+                $errorMessages[] = $field.' '.$messages;
+
+                continue;
+            }
+
             $errorMessages[] = $field.' '.implode(' ', $messages);
         }
 
-        $result = implode(' | ', $errorMessages);
-
-        echo $result;
+        return implode(' | ', $errorMessages);
     }
 }
