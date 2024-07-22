@@ -16,6 +16,6 @@ class PurchaseResponse extends AbstractResponse
 
     public function getMessage(): ?string
     {
-        return $this->data['errors'] ? current($this->data['errors']) : null;
+        return isset($this->data['errors']) ? current($this->data['errors']) : null;
     }
 }
