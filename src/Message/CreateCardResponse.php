@@ -13,12 +13,12 @@ class CreateCardResponse extends AbstractResponse implements RedirectResponseInt
 
     public function getTransactionReference()
     {
-        return $this->isSuccessful() ? $this->data['order_number'] : null;
+        return $this->isSuccessful() ? ($this->data['order_number'] ?? null) : null;
     }
 
     public function getMessage(): ?string
     {
-        return $this->data['errors'] && is_array($this->data['errors']) ? $this->convertErrorsToString($this->data['errors']) : null;
+        return isset($this->data['errors']) && is_array($this->data['errors']) ? $this->convertErrorsToString($this->data['errors']) : null;
     }
 
     public function getRedirectUrl(): string
