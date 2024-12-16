@@ -104,6 +104,16 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('panToken', $panToken);
     }
 
+    public function getCitId(): string
+    {
+        return $this->getParameter('citId');
+    }
+
+    public function setCitId(string $citId): self
+    {
+        return $this->setParameter('citId', $citId);
+    }
+
     public function getEndpoint(array $data = []): string
     {
         return '/v2/transaction';
@@ -155,7 +165,10 @@ class PurchaseRequest extends AbstractRequest
                 'authenticity_token' => $this->getAuthenticityToken(),
                 'language' => $this->getLanguage(),
                 'pan_token' => $this->getPanToken(),
+                'supported_payment_methods' => $this->getPanToken(),
+                'cit_id' => $this->getCitId(),
                 'moto' => true,
+                'merchant_initiated_transaction' => true,
             ],
         ];
     }

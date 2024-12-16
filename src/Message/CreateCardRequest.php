@@ -155,6 +155,7 @@ class CreateCardRequest extends AbstractRequest
             'language' => $this->getLanguage(),
             'moto' => true,
             'tokenize_pan' => true,
+            'future_usage' => 'recurring',
             'success_url_override' => $this->getSuccessUrl(),
             'cancel_url_override' => $this->getCancelUrl(),
             'callback_url_override' => $this->getCallbackUrl(),
