@@ -104,12 +104,12 @@ class AuthorizeRequest extends AbstractRequest
         return $this->setParameter('panToken', $panToken);
     }
 
-    public function getCitId(): string
+    public function getCitId(): ?string
     {
         return $this->getParameter('citId');
     }
 
-    public function setCitId(string $citId): self
+    public function setCitId(?string $citId): self
     {
         return $this->setParameter('citId', $citId);
     }

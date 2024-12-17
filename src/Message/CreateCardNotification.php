@@ -44,9 +44,9 @@ class CreateCardNotification implements NotificationInterface
         return $this->data['pan_token'];
     }
 
-    public function getCitId(): string
+    public function getCitId(): ?string
     {
-        return $this->data['cit_id'];
+        return $this->data['cit_id'] ?? null;
     }
 
     public function getPaymentMethod(): object
