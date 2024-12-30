@@ -159,8 +159,8 @@ class AuthorizeRequest extends AbstractRequest
         ];
     }
 
-    protected function createResponse($data, int $statusCode): AuthorizeResponse
+    protected function createResponse($data, int $statusCode): TransactionResponse
     {
-        return $this->response = new AuthorizeResponse($this, $data, $statusCode);
+        return $this->response = new TransactionResponse($this, $data, $statusCode);
     }
 }

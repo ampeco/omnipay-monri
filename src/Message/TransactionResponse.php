@@ -2,7 +2,7 @@
 
 namespace Ampeco\OmnipayMonri\Message;
 
-class PurchaseResponse extends AbstractResponse
+class TransactionResponse extends AbstractResponse
 {
     public function isSuccessful(): bool
     {
@@ -16,6 +16,10 @@ class PurchaseResponse extends AbstractResponse
 
     public function getMessage(): ?string
     {
-        return isset($this->data['errors']) ? current($this->data['errors']) : null;
+        if (isset($this->data['errors'])) {
+            return current($this->data['errors']);
+        }
+
+        return $this->data['transaction']['response_message'] ?? null;
     }
 }

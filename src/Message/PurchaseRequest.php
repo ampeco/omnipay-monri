@@ -160,8 +160,8 @@ class PurchaseRequest extends AbstractRequest
         ];
     }
 
-    protected function createResponse($data, int $statusCode): PurchaseResponse
+    protected function createResponse($data, int $statusCode): TransactionResponse
     {
-        return $this->response = new PurchaseResponse($this, $data, $statusCode);
+        return $this->response = new TransactionResponse($this, $data, $statusCode);
     }
 }
