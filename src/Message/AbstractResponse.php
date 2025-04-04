@@ -23,16 +23,21 @@ abstract class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
      */
     private function decodeData(RequestInterface $request, $data)
     {
-        if ($request->getPayloadType() === AbstractRequest::PAYLOAD_JSON || $this->isJson($data)) {
-            return json_decode($data, true, 512, JSON_THROW_ON_ERROR);
-        }
-        if ($request->getPayloadType() === AbstractRequest::PAYLOAD_XML) {
-            return json_decode(
-                json_encode(simplexml_load_string($data), JSON_THROW_ON_ERROR),
-                true,
-                512,
-                JSON_THROW_ON_ERROR
-            );
+        try {
+            if ($request->getPayloadType() === AbstractRequest::PAYLOAD_JSON || $this->isJson($data)) {
+                return json_decode($data, true, 512, JSON_THROW_ON_ERROR);
+            }
+            if ($request->getPayloadType() === AbstractRequest::PAYLOAD_XML) {
+                return json_decode(
+                    json_encode(simplexml_load_string($data), JSON_THROW_ON_ERROR),
+                    true,
+                    512,
+                    JSON_THROW_ON_ERROR
+                );
+            }
+        } catch (\Throwable $exception) {
+            $message = sprintf('%s response payload: %s', $exception->getMessage(), $data);
+            throw new \RuntimeException('Failed to decode response data: ' . $message, 0, $exception);
         }
 
         return $data;
